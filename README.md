@@ -2,6 +2,11 @@
 
 Lightweight presentation engine. Write slides in Markdown, get a self-contained HTML site with keyboard navigation, overview mode, and syntax highlighting.
 
+<img width="774" height="610" alt="image" src="https://github.com/user-attachments/assets/6937dabc-94a0-417f-bef1-9f2247d47b73" />
+
+<img width="1911" height="961" alt="image" src="https://github.com/user-attachments/assets/e15de527-cd91-407f-a3e2-f9cbd7e3b3d3" />
+
+
 ## Usage
 
 ### Add a deck
