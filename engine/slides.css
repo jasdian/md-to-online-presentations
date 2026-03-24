@@ -1,0 +1,613 @@
+/* ===== Theme Variables ===== */
+:root {
+  --bg: #0a0a0b;
+  --bg-even: #111114;
+  --bg-code: rgba(255, 255, 255, 0.08);
+  --bg-blockquote: rgba(110, 86, 207, 0.08);
+  --text: #ededef;
+  --text-heading: #f5f5f7;
+  --text-h3: #c8c8cc;
+  --text-dim: #8b8b8d;
+  --text-quote: #b0b0b5;
+  --link: #7c93ee;
+  --link-hover: #8b5cf6;
+  --accent: #6e56cf;
+  --accent-green: #c8e64a;
+  --border: #232329;
+  --border-heavy: #2e2e35;
+  --counter: #5c5c5e;
+  --toolbar-bg: rgba(10, 10, 11, 0.92);
+  --notes-bg: rgba(18, 18, 22, 0.96);
+}
+
+html[data-theme="light"] {
+  --bg: #f8f8f8;
+  --bg-even: #ffffff;
+  --bg-code: rgba(0, 0, 0, 0.05);
+  --bg-blockquote: rgba(110, 86, 207, 0.06);
+  --text: #2a2a2e;
+  --text-heading: #1a1a1e;
+  --text-h3: #4a4a50;
+  --text-dim: #6e6e72;
+  --text-quote: #555560;
+  --link: #4a5ec7;
+  --link-hover: #6d3fcf;
+  --accent: #6e56cf;
+  --accent-green: #6a8a00;
+  --border: #e0e0e3;
+  --border-heavy: #c8c8d0;
+  --counter: #a0a0a5;
+  --toolbar-bg: rgba(248, 248, 248, 0.92);
+  --notes-bg: rgba(245, 245, 247, 0.96);
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ===== Slide Container ===== */
+html {
+  scroll-snap-type: y proximity;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ===== Individual Slide ===== */
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4vh 8vw;
+  padding-top: calc(3.5rem + 2vh);
+  padding-bottom: calc(3.5rem + 2vh);
+  position: relative;
+}
+
+section:nth-child(even) {
+  background: var(--bg-even);
+}
+
+/* ===== Typography ===== */
+h1 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 0.6em;
+  color: var(--text-heading);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: var(--text-heading);
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 600;
+  margin-bottom: 0.4em;
+  color: var(--text-h3);
+}
+
+p {
+  margin-bottom: 0.8em;
+  max-width: 65ch;
+}
+
+ul, ol {
+  margin-bottom: 0.8em;
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.3em;
+}
+
+li + li {
+  margin-top: 0.2em;
+}
+
+strong {
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+em {
+  font-style: italic;
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 0.5em 1em;
+  margin: 0.8em 0;
+  background: var(--bg-blockquote);
+  font-style: italic;
+  color: var(--text-quote);
+}
+
+img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+figure {
+  margin: 0.8em 0;
+}
+
+figcaption {
+  font-size: 0.8em;
+  color: var(--text-dim);
+  margin-top: 0.3em;
+}
+
+/* ===== Tables ===== */
+table {
+  border-collapse: collapse;
+  margin: 0.8em 0;
+  width: 100%;
+  font-size: 0.9em;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+th, td {
+  padding: 0.4em 0.8em;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-weight: 600;
+  color: var(--text-heading);
+  border-bottom: 2px solid var(--border-heavy);
+}
+
+/* ===== Code Blocks ===== */
+pre {
+  margin: 0.8em 0;
+  border-radius: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1em;
+  border: 1px solid var(--border);
+}
+
+pre code {
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+code {
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  font-size: 0.9em;
+  background: var(--bg-code);
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* ===== Two-Column Layout ===== */
+.columns {
+  display: flex;
+  gap: 3vw;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.column {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ===== Speaker Notes (hidden in slides, shown via panel) ===== */
+aside.notes {
+  display: none;
+}
+
+/* ===== Footnotes ===== */
+.footnotes {
+  margin-top: 1.5em;
+  padding-top: 0.8em;
+  border-top: 1px solid var(--border);
+  font-size: 0.75em;
+  color: var(--text-dim);
+}
+
+.footnotes ol {
+  padding-left: 1.2em;
+}
+
+.footnotes li {
+  margin-bottom: 0.2em;
+}
+
+.footnote-ref {
+  font-size: 0.75em;
+  vertical-align: super;
+  text-decoration: none;
+}
+
+.footnote-back {
+  text-decoration: none;
+  margin-left: 0.2em;
+}
+
+/* ===== Toolbar ===== */
+#toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  background: var(--toolbar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  z-index: 200;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.toolbar-link {
+  color: var(--text-dim);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.toolbar-link:hover {
+  color: var(--text);
+}
+
+.toolbar-sep {
+  color: var(--border);
+}
+
+.toolbar-title {
+  color: var(--text);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.toolbar-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.toolbar-btn:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
+}
+
+.toolbar-btn.active {
+  background: var(--accent-green);
+  color: #0a0a0b;
+  border-color: var(--accent-green);
+  font-weight: 600;
+}
+
+/* ===== Notes Panel ===== */
+#notes-panel {
+  position: fixed;
+  top: 3rem;
+  right: 0;
+  bottom: 3rem;
+  width: 280px;
+  background: var(--notes-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-left: 1px solid var(--border);
+  padding: 1.25rem;
+  overflow-y: auto;
+  z-index: 150;
+  transform: translateX(100%);
+  transition: transform 0.2s ease;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+#notes-panel h2 {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+
+.notes-empty {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+body.notes-open #notes-panel {
+  transform: translateX(0);
+}
+
+body.notes-open section {
+  margin-right: 280px;
+}
+
+/* ===== Bottom Navigation ===== */
+#bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  background: var(--toolbar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  z-index: 200;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0.4rem 0;
+  min-width: 5rem;
+}
+
+.nav-btn:hover {
+  color: var(--text);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+#btn-prev { text-align: left; }
+#btn-next { text-align: right; }
+
+#dot-indicators {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--counter);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  padding: 0;
+}
+
+.dot.active {
+  width: 22px;
+  border-radius: 4px;
+  background: var(--accent-green);
+}
+
+/* ===== Slide Counter ===== */
+#slide-counter {
+  position: fixed;
+  bottom: 3.5rem;
+  right: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--counter);
+  z-index: 100;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+/* ===== Progress Bar ===== */
+#progress-bar {
+  position: fixed;
+  top: 3rem;
+  left: 0;
+  height: 3px;
+  background: var(--accent-green);
+  z-index: 250;
+  transition: width 0.2s ease;
+  pointer-events: none;
+}
+
+/* ===== Overview Mode ===== */
+body.overview {
+  overflow-y: auto;
+}
+
+body.overview section {
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+  min-height: auto;
+  height: 50vh;
+  width: 45%;
+  display: inline-flex;
+  margin: 1vw;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transform-origin: top left;
+  font-size: 0.5em;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+body.overview section:hover {
+  border-color: var(--accent);
+}
+
+body.overview #slide-counter,
+body.overview #progress-bar,
+body.overview #bottom-nav,
+body.overview #toolbar {
+  display: none;
+}
+
+body.overview html {
+  scroll-snap-type: none;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  section {
+    padding: 3vh 5vw;
+    padding-top: calc(3.5rem + 1vh);
+    padding-bottom: calc(3.5rem + 1vh);
+  }
+
+  .columns {
+    flex-direction: column;
+    gap: 1.5em;
+  }
+
+  pre {
+    font-size: 0.75em;
+    padding: 0.7em;
+  }
+
+  pre code {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  body.overview section {
+    width: calc(100% - 2vw);
+    height: 40vh;
+  }
+
+  /* Notes panel overlays on mobile */
+  body.notes-open section {
+    margin-right: 0;
+  }
+
+  #notes-panel {
+    width: 75vw;
+    max-width: 320px;
+  }
+
+  .toolbar-title {
+    display: none;
+  }
+
+  .toolbar-sep {
+    display: none;
+  }
+
+  #dot-indicators {
+    max-width: 50vw;
+    overflow: hidden;
+  }
+}
+
+/* ===== Print / PDF ===== */
+@media print {
+  html {
+    scroll-snap-type: none;
+    color: #1a1a2e;
+    background: #fff;
+  }
+
+  section {
+    scroll-snap-align: none;
+    min-height: auto;
+    height: auto;
+    page-break-after: always;
+    padding: 2cm;
+    background: #fff !important;
+    margin-right: 0 !important;
+  }
+
+  section:last-child {
+    page-break-after: avoid;
+  }
+
+  h1, h2, h3 {
+    color: #1a1a2e;
+  }
+
+  #slide-counter,
+  #progress-bar,
+  #toolbar,
+  #bottom-nav,
+  #notes-panel {
+    display: none !important;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-color: #ddd;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}

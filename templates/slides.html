@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html$if(lang)$ lang="$lang$"$endif$>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark light">
+  <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+$for(author-meta)$
+  <meta name="author" content="$author-meta$">
+$endfor$
+$if(date-meta)$
+  <meta name="dcterms.date" content="$date-meta$">
+$endif$
+$if(keywords)$
+  <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$">
+$endif$
+  <script>document.documentElement.setAttribute("data-theme",localStorage.getItem("deck-theme")||"dark")</script>
+  <link rel="stylesheet" href="/assets/highlight.min.css">
+$for(css)$
+  <link rel="stylesheet" href="$css$">
+$endfor$
+  <link rel="stylesheet" href="/assets/slides.min.css">
+$for(header-includes)$
+  $header-includes$
+$endfor$
+</head>
+<body>
+<nav id="toolbar">
+  <div class="toolbar-left">
+    <a href="/" class="toolbar-link">← All Decks</a>
+    <span class="toolbar-sep">|</span>
+    <span class="toolbar-title">$pagetitle$</span>
+  </div>
+  <div class="toolbar-right">
+    <button id="btn-theme" class="toolbar-btn" title="Toggle light/dark">☽</button>
+    <button id="btn-notes" class="toolbar-btn">Notes</button>
+    <button id="btn-pdf" class="toolbar-btn">Export PDF</button>
+  </div>
+</nav>
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(title)$
+<section id="title-slide">
+  <h1 class="title">$title$</h1>
+$if(subtitle)$
+  <p class="subtitle">$subtitle$</p>
+$endif$
+$for(author)$
+  <p class="author">$author$</p>
+$endfor$
+$if(date)$
+  <p class="date">$date$</p>
+$endif$
+</section>
+$endif$
+
+$body$
+
+$for(include-after)$
+$include-after$
+$endfor$
+<div id="slide-counter"></div>
+<div id="progress-bar"></div>
+<nav id="bottom-nav">
+  <button id="btn-prev" class="nav-btn">← Previous</button>
+  <div id="dot-indicators"></div>
+  <button id="btn-next" class="nav-btn">Next →</button>
+</nav>
+<script defer src="/assets/slides.min.js"></script>
+</body>
+</html>

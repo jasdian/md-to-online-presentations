@@ -1,0 +1,126 @@
+/* Pandoc syntax highlighting — CSS variables for dark/light mode */
+:root {
+  --hl-bg: #131316;
+  --hl-fg: #e1e1e6;
+  --hl-alert: #95da4c;
+  --hl-alert-bg: #4d1f24;
+  --hl-annotation: #3f8058;
+  --hl-attribute: #2980b9;
+  --hl-base-n: #f67400;
+  --hl-builtin: #7f8c8d;
+  --hl-control-flow: #fdbc4b;
+  --hl-char: #3daee9;
+  --hl-constant: #27aeae;
+  --hl-comment: #5c5c5e;
+  --hl-comment-var: #7f8c8d;
+  --hl-doc: #a43340;
+  --hl-data-type: #2980b9;
+  --hl-decimal: #f67400;
+  --hl-error: #da4453;
+  --hl-extension: #7c93ee;
+  --hl-float: #f67400;
+  --hl-function: #8b5cf6;
+  --hl-import: #3ecf8e;
+  --hl-info: #c45b00;
+  --hl-keyword: #e1e1e6;
+  --hl-operator: #e1e1e6;
+  --hl-other: #3ecf8e;
+  --hl-preproc: #3ecf8e;
+  --hl-regex: #2980b9;
+  --hl-regex-bg: #0f1a24;
+  --hl-special-char: #3daee9;
+  --hl-special-string: #da4453;
+  --hl-string: #f44f4f;
+  --hl-variable: #27aeae;
+  --hl-verbatim-string: #da4453;
+  --hl-warning: #da4453;
+}
+
+html[data-theme="light"] {
+    --hl-bg: #f5f5f7;
+    --hl-fg: #2a2a2e;
+    --hl-alert: #4d7a0f;
+    --hl-alert-bg: #fdf0f0;
+    --hl-annotation: #2d6a44;
+    --hl-attribute: #1a5f8a;
+    --hl-base-n: #b85500;
+    --hl-builtin: #5a6566;
+    --hl-control-flow: #9c6b00;
+    --hl-char: #1a7ab5;
+    --hl-constant: #1a7a7a;
+    --hl-comment: #8a8a8d;
+    --hl-comment-var: #5a6566;
+    --hl-doc: #8a2030;
+    --hl-data-type: #1a5f8a;
+    --hl-decimal: #b85500;
+    --hl-error: #c0303f;
+    --hl-extension: #4a5ec7;
+    --hl-float: #b85500;
+    --hl-function: #6d3fcf;
+    --hl-import: #1a8a55;
+    --hl-info: #9a4800;
+    --hl-keyword: #2a2a2e;
+    --hl-operator: #2a2a2e;
+    --hl-other: #1a8a55;
+    --hl-preproc: #1a8a55;
+    --hl-regex: #1a5f8a;
+    --hl-regex-bg: #eaf0f5;
+    --hl-special-char: #1a7ab5;
+    --hl-special-string: #c0303f;
+    --hl-string: #c0303f;
+    --hl-variable: #1a7a7a;
+    --hl-verbatim-string: #c0303f;
+    --hl-warning: #c0303f;
+}
+
+/* Source code layout */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+
+@media screen {
+  div.sourceCode { overflow: auto; }
+}
+
+@media print {
+  pre > code.sourceCode { white-space: pre-wrap; }
+  pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+
+/* Token colors */
+div.sourceCode { color: var(--hl-fg); background-color: var(--hl-bg); }
+code span { color: var(--hl-fg); }
+code span.al { color: var(--hl-alert); background-color: var(--hl-alert-bg); font-weight: bold; }
+code span.an { color: var(--hl-annotation); }
+code span.at { color: var(--hl-attribute); }
+code span.bn { color: var(--hl-base-n); }
+code span.bu { color: var(--hl-builtin); }
+code span.cf { color: var(--hl-control-flow); font-weight: bold; }
+code span.ch { color: var(--hl-char); }
+code span.cn { color: var(--hl-constant); font-weight: bold; }
+code span.co { color: var(--hl-comment); }
+code span.cv { color: var(--hl-comment-var); }
+code span.do { color: var(--hl-doc); }
+code span.dt { color: var(--hl-data-type); }
+code span.dv { color: var(--hl-decimal); }
+code span.er { color: var(--hl-error); text-decoration: underline; }
+code span.ex { color: var(--hl-extension); font-weight: bold; }
+code span.fl { color: var(--hl-float); }
+code span.fu { color: var(--hl-function); }
+code span.im { color: var(--hl-import); }
+code span.in { color: var(--hl-info); }
+code span.kw { color: var(--hl-keyword); font-weight: bold; }
+code span.op { color: var(--hl-operator); }
+code span.ot { color: var(--hl-other); }
+code span.pp { color: var(--hl-preproc); }
+code span.re { color: var(--hl-regex); background-color: var(--hl-regex-bg); }
+code span.sc { color: var(--hl-special-char); }
+code span.ss { color: var(--hl-special-string); }
+code span.st { color: var(--hl-string); }
+code span.va { color: var(--hl-variable); }
+code span.vs { color: var(--hl-verbatim-string); }
+code span.wa { color: var(--hl-warning); }
