@@ -58,14 +58,24 @@
   }
 
   let scrollLock = false;
+  let scrollLockTimer = 0;
+
   function goTo(n) {
-    current = Math.max(0, Math.min(n, total - 1));
+    n = Math.max(0, Math.min(n, total - 1));
+    if (n === current && scrollLock) return;
+    current = n;
+
     if (!overview) {
+      clearTimeout(scrollLockTimer);
       scrollLock = true;
+      document.documentElement.classList.add("scroll-navigating");
       sections[current].scrollIntoView({ behavior: "smooth" });
-      // Re-enable scroll detection after animation settles
-      setTimeout(() => { scrollLock = false; }, 600);
+      scrollLockTimer = setTimeout(() => {
+        document.documentElement.classList.remove("scroll-navigating");
+        scrollLock = false;
+      }, 800);
     }
+
     history.replaceState(null, "", "#" + (current + 1));
     updateUI();
   }
@@ -74,7 +84,15 @@
     overview = !overview;
     document.body.classList.toggle("overview", overview);
     if (!overview) {
+      scrollLock = true;
+      document.documentElement.classList.add("scroll-navigating");
       sections[current].scrollIntoView();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          document.documentElement.classList.remove("scroll-navigating");
+          scrollLock = false;
+        });
+      });
     }
   }
 
@@ -196,9 +214,11 @@
       for (let i = 0; i < total; i++) {
         const rect = sections[i].getBoundingClientRect();
         if (rect.top <= viewMid && rect.bottom > viewMid) {
-          current = i;
-          history.replaceState(null, "", "#" + (current + 1));
-          updateUI();
+          if (current !== i) {
+            current = i;
+            history.replaceState(null, "", "#" + (current + 1));
+            updateUI();
+          }
           break;
         }
       }
@@ -210,6 +230,10 @@
   if (hash > 0 && hash <= total) {
     current = hash - 1;
   }
+  scrollLock = true;
   sections[current].scrollIntoView();
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { scrollLock = false; });
+  });
   updateUI();
 })();

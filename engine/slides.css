@@ -48,12 +48,17 @@ html[data-theme="light"] {
 html {
   scroll-snap-type: y proximity;
   overflow-y: scroll;
-  scroll-behavior: smooth;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-size: clamp(16px, 2vw, 22px);
   line-height: 1.5;
   color: var(--text);
   background: var(--bg);
+}
+
+/* Disable snap during programmatic navigation to prevent snap-vs-scrollIntoView conflict */
+html.scroll-navigating {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
 }
 
 body {
